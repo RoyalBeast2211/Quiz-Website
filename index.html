@@ -1,64 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quizikal</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <button class="toggleCalc" onclick="toggleCalculator()">
-        Calculator
-      </button>
-      <div id="calcSidebar" class="calcSidebar">
-        <div class="calculator">
-          <form>
-            <div class="display">
-              <input type="text" name="display" readonly />
-            </div>
-            <div>
-              <input type="button" value="AC" onclick="display.value='' " />
-              <input
-                type="button"
-                value="DE"
-                onclick="display.value=display.value.toString().slice(0,-1)"
-              />
-              <input type="button" value="." onclick="display.value+='.' " />
-              <input type="button" value="/" onclick="display.value+='/' " />
-            </div>
-            <div>
-              <input type="button" value="7" onclick="display.value+='7' " />
-              <input type="button" value="8" onclick="display.value+='8' " />
-              <input type="button" value="9" onclick="display.value+='9' " />
-              <input type="button" value="*" onclick="display.value+='*' " />
-            </div>
-            <div>
-              <input type="button" value="4" onclick="display.value+='4' " />
-              <input type="button" value="5" onclick="display.value+='5' " />
-              <input type="button" value="6" onclick="display.value+='6' " />
-              <input type="button" value="-" onclick="display.value+='-' " />
-            </div>
-            <div>
-              <input type="button" value="1" onclick="display.value+='1' " />
-              <input type="button" value="2" onclick="display.value+='2' " />
-              <input type="button" value="3" onclick="display.value+='3' " />
-              <input type="button" value="+" onclick="display.value+='+' " />
-            </div>
-            <div>
-              <input type="button" value="00" onclick="display.value+='00' " />
-              <input type="button" value="0" onclick="display.value+='0' " />
-              <input
-                type="button"
-                value="="
-                onclick="display.value=eval(display.value)"
-                class="equal"
-              />
-            </div>
-          </form>
-        </div>
-      </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css" />
+
+  <title>Quizikal</title>
+</head>
+
+<body>
+  <!-- This is navigation bar -->
+  <header class="header">
+    <div class="header_content">
+      <a href="#" class="logo">
+        <img class="logo_img" src="logo.png" alt="logo" />
+      </a>
+
+      <nav class="nav">
+        <ul class="nav_list">
+
+          <li class="nav_item dropdown">
+            <input class="nav_link" type="text" id="search-input" placeholder="Search quizzes" />
+            <button class="nav_link" id="voice-search-btn" onclick="voice()"><i class="fa fa-microphone" style="font-size:18px"></i></button>
+          </li>
+
+          <li class="nav_item dropdown">
+            <a class="nav_link" href="https://www.linkedin.com/in/theomkarmore/">About Me</a>
+          </li>
+
+          <li class="nav_item dropdown">
+            <a class="nav_link" href="#">Quizes &#x25BE;</a>
+            <ul class="dropdown_list">
+              <li class="dropdown_item submenu">
+                <a href="#" class="dropdown_link" onclick="startQuiz('math')">Math &#x25B8;</a>
+                <ul class="submenu_list">
+                  <li class="submenu_item">
+                    <a class="submenu_link" href="#" onclick="startQuizDiff('math', 'easy')">Easy</a>
+                  </li>
+                  <li class="submenu_item">
+                    <a class="submenu_link" href="#" onclick="startQuizDiff('math', 'medium')">Medium</a>
+                  </li>
+                  <li class="submenu_item">
+                    <a class="submenu_link" href="#" onclick="startQuizDiff('math', 'hard')">Hard</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown_item submenu">
+                <a href="#" class="dropdown_link" onclick="startQuiz('logic')">Logic &#x25B8;</a>
+                <ul class="submenu_list">
+                  <li class="submenu_item">
+                    <a class="submenu_link" href="#" onclick="startQuizDiff('logic', 'easy')">Easy</a>
+                  </li>
+                  <li class="submenu_item">
+                    <a class="submenu_link" href="#" onclick="startQuizDiff('logic', 'medium')">Medium</a>
+                  </li>
+                  <li class="submenu_item">
+                    <a class="submenu_link" href="#" onclick="startQuizDiff('logic', 'hard')">Hard</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+
+          <!-- calculator button in nav bar -->
+          <li class="nav_item">
+            <a href="#" class="nav_link" onclick="toggleCalculator()">Calculator</a>
+          </li>
+        </ul>
+      </nav>
     </div>
-    <script src="script.js"></script>
-  </body>
+  </header>
+
+  <!-- This is calculator -->
+
+  <div id="calculator-sidebar" class="calculator-sidebar">
+    <div class="calculator">
+      <form>
+        <div class="display">
+          <input type="text" name="display" readonly />
+        </div>
+        <div>
+          <input type="button" value="AC" onclick="display.value='' " />
+          <input type="button" value="DE" onclick="display.value=display.value.toString().slice(0,-1)" />
+          <input type="button" value="." onclick="display.value+='.' " />
+          <input type="button" value="/" onclick="display.value+='/' " />
+        </div>
+        <div>
+          <input type="button" value="7" onclick="display.value+='7' " />
+          <input type="button" value="8" onclick="display.value+='8' " />
+          <input type="button" value="9" onclick="display.value+='9' " />
+          <input type="button" value="*" onclick="display.value+='*' " />
+        </div>
+        <div>
+          <input type="button" value="4" onclick="display.value+='4' " />
+          <input type="button" value="5" onclick="display.value+='5' " />
+          <input type="button" value="6" onclick="display.value+='6' " />
+          <input type="button" value="-" onclick="display.value+='-' " />
+        </div>
+        <div>
+          <input type="button" value="1" onclick="display.value+='1' " />
+          <input type="button" value="2" onclick="display.value+='2' " />
+          <input type="button" value="3" onclick="display.value+='3' " />
+          <input type="button" value="+" onclick="display.value+='+' " />
+        </div>
+        <div>
+          <input type="button" value="00" onclick="display.value+='00' " />
+          <input type="button" value="0" onclick="display.value+='0' " />
+          <input type="button" value="=" onclick="display.value=eval(display.value)" class="equal" />
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- progress bar + timer -->
+  <div class="progress_timer">
+    <div id = "progressText">Question solved</div>
+    <div id="progressBar"> 
+      <div id="progressFull"></div>
+    </div>
+    <div id="timer">Time 0s</div>
+  </div>
+
+  <!-- this is quiz app -->
+
+  <div id="quiz-app">
+    <h1>Get Quized with Quizikal</h1>
+    <div id="question-container">
+      <div id="question"></div>
+      <div id="answer-buttons" class="btn-grid"></div>
+    </div>
+    <div id="controls">
+      <button id="start-btn">Start</button>
+      <button id="next-btn">Next</button>
+    </div>
+    <div id="results"></div>
+  </div>
+
+
+
+  <script src="script.js"></script>
+</body>
+
 </html>

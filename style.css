@@ -1,81 +1,313 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
 }
 
-.container{
-    width: 100%;
-    height: 100vh;
-    background: #e3f9ff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+ul {
+  list-style: none;
 }
 
-.toggleCalc {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    padding: 10px 20px;
-    background-color: #3a4452;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 1000;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-.calcSidebar {
-    position: fixed;
-    top: 15%;
-    right: -380px;
-    width: 380px;
-    background-color: #3a4452;
-    padding: 20px;
-    box-shadow: -2px 0 5px rgba(0,0,0,0.5);
-    transition: right 0.3s ease;
-
+/* BASE STYLES */
+body {
+  background: linear-gradient(to right, #f6490f, #f27813, #ef9614);
+  background-image: url(background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+  height: 100vh;
+  width: 100vw;
 }
 
-.calcSidebar.active {
-    right: 0;
+/* NORMAL STYLES */
+.header {
+  position: fixed;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0);
 }
 
-.calculator
-{
-    background: #3a4452;
-    padding: 20px;
-    border-radius: 10px;
-}
-.calculator form input
-{
-    border: 0;
-    outline: 0;
-    width: 60px;
-    height: 60px;
-    border-radius: 10px;
-    box-shadow:-8px -8px 15px rgba(255,255,255,0.1),5px 5px 15px rgba(0,0,0,0.2);
-    background: transparent;
-    font-size: 20px;
-    color: #fff;
-    cursor: pointer;
-    margin: 10px;
+.header_content {
+  min-height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  padding: 0 30px;
+  margin: 0 auto;
 }
 
-.calculator form .display{
-    display: flex;
-    justify-content: flex-end;
-    margin: 20px 0;
+.logo_img {
+  display: block; 
+  width: 100px;
 }
 
-.calculator form .display input{
-text-align: right;
-flex: 1;
-font-size: 45px;
-box-shadow: none;
+.nav_list {
+  display: flex;
+  align-items: baseline;
+  column-gap: 20px;
 }
 
-.calculator form .equal{
-    width: 145px;
+.nav_link {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 15px;
+  position: relative;
+  padding: 7px 14px;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.nav_link:hover,
+.nav_link:focus,
+.dropdown:hover .nav_link {
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown {
+  position: relative;
+  font-size: 14px;
+}
+
+.dropdown:hover .dropdown_list {
+  display: block;
+}
+
+.dropdown_list,
+.submenu_list {
+  display: none;
+  position: absolute;
+  top: 125%;
+  left: 0;
+  background-color: #fff;
+  min-width: max-content;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown_item,
+.submenu_item {
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.dropdown_item:hover,
+.submenu_item:hover {
+  background-color: rgb(234, 234, 234);
+}
+
+.submenu {
+  position: relative;
+}
+
+.submenu:hover .submenu_list {
+  display: block;
+}
+
+.submenu_list {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background-color: #fff;
+  min-width: max-content;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* for calculator */
+
+.calculator-sidebar {
+  position: fixed;
+  top: 15%;
+  right: -380px;
+  width: 380px;
+  background-color: #1F2833;
+  padding: 0px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  transition: right 0.3s ease;
+}
+
+.calculator-sidebar.active {
+  right: 0;
+}
+
+.calculator {
+  background: #1F2833;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.calculator form input {
+  border: 0;
+  outline: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.1),
+    5px 5px 15px rgba(0, 0, 0, 0.2);
+  background: transparent;
+  font-size: 20px;
+  color: #ffffff;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.calculator form .display {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px 0;
+}
+
+.calculator form .display input {
+  text-align: right;
+  flex: 1;
+  font-size: 45px;
+  box-shadow: none;
+}
+
+.calculator form .equal {
+  width: 145px;
+}
+
+/* quiz box */
+
+#quiz-app {
+  position: relative;
+  top: 30%;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #1F2833;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #66FCF1;
+}
+
+#question-container {
+  margin-bottom: 20px;
+}
+
+#question {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.btn-grid {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 20px;
+}
+
+#controls {
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#controls.show {
+  display: flex;
+}
+
+#start-btn,
+#next-btn,.btn,.restart-btn{
+  padding: 10px 20px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#start-btn:hover,
+#next-btn:hover,.btn,.restart-btn:hover{
+  background-color: #121312;
+}
+
+
+.hide {
+  display: none;
+}
+
+.correct {
+  background-color: #28a745;
+  /* Green color for correct answers */
+  color: white;
+}
+
+.wrong {
+  background-color: #dc3545;
+  /* Red color for incorrect answers */
+  color: white;
+}
+
+.progress_timer {
+  position: relative;
+  top: 32%;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #1F2833;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+}
+
+#progressBar {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 40px;
+  width: 200px;
+  border: 3px solid #C5C6C7;
+}
+
+#progressFull {
+  height: 40px;
+  background-color: #45A29E;
+  width: 0%;
+}
+
+#progressText {
+  width: 200px;
+  margin-top: 15px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  color: #66FCF1;
+}
+
+#timer {
+  width: 200px;
+  margin-top: 15px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  color: #66FCF1;
+}
+
+#search-input{
+  border: 0;
+  outline: 0;
+  width: 140px;
+  border-radius: 10px;
+  box-shadow: none;
+  background: transparent;
+  font-size: 18px;
+  color: #ffffff;
+
+}
+#voice-search-btn{
+  border: 0;
+  outline: 0;
+  border-radius: 10px;
+  box-shadow: none;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
 }
