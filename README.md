@@ -3,7 +3,7 @@ Visit the website at => https://royalbeast2211.github.io/Quiz-Website/
 # Quiz-Website
 quiz website project to join IDS club in VNIT
 
-features to be added
+features added
 
 1.Dropdown menu with quiz categories
 
